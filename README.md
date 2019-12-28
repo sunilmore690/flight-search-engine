@@ -2,6 +2,10 @@
 
 > This project is part of the Vuex Crash Course on YouTube
 
+#### demo
+http://flight-search-engine.surge.sh/
+
+
 ## Project setup
 
 ```
