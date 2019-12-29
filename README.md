@@ -1,7 +1,7 @@
-# Vuex Todo Manager
+#Flight Search Engine (VueJs)
 
-> This project is part of the Vuex Crash Course on YouTube
-
+### Demo
+  https://flight-search-engine.surge.sh
 ## Project setup
 
 ```
