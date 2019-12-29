@@ -1,24 +1,25 @@
 <template>
-  <div class="container">
-    <div ><h2> Flight Search Engine</h2></div>
-    <el-row class="search-title">
-      <el-col :span="8" :sm="8" :xs="24">
-        <FilterFlights @onChangeFilter="onChangeFilter" @resetFilter='resetFilter' @onPriceChange="onPriceChange" />
-      </el-col>
-      <el-col :span="16" :xs=24>
-        <div class="search-title">
-          <span v-if='filters.source_code'>
-            {{filters.source_code}} > {{filters.destination_code}}
-          </span>
-          
-        </div>
-        <Flights
-          
-          :flights="flights"
-          v-loading='loading'
-        />
-      </el-col>
-    </el-row>
+  <div>
+    <div class="site-title">
+      <h2>Flight Search Engine</h2>
+    </div>
+    <div class="container">
+      <el-row class="search-title">
+        <el-col :span="8" :sm="8" :xs="24">
+          <FilterFlights
+            @onChangeFilter="onChangeFilter"
+            @resetFilter="resetFilter"
+            @onPriceChange="onPriceChange"
+          />
+        </el-col>
+        <el-col :span="16" :xs="24">
+          <div class="search-title">
+            <span v-if="filters.source_code">{{filters.source_code}} > {{filters.destination_code}}</span>
+          </div>
+          <Flights :flights="flights" v-loading="loading" />
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 
@@ -31,9 +32,9 @@ export default {
   name: "app",
   data() {
     return {
-      loading:false,
+      loading: false,
       flights,
-      filters:{}
+      filters: {}
     };
   },
   components: {
@@ -44,25 +45,27 @@ export default {
     onChangeFilter(filters) {
       console.log("filters", filters);
       this.filters = filters;
-      this.loading = true
-      setTimeout(()=>{
+      this.loading = true;
+      setTimeout(() => {
         this.flights = _.where(flights, filters);
         this.loading = false;
-      },500)
-      
+      }, 500);
     },
     onPriceChange(price_range) {
-      console.log('hi',price_range)
-       this.loading = true
-      setTimeout(()=>{
-        this.flights = this.flights.filter(flight=>parseInt(flight.fare.split(" ")[1], 10) >=price_range[0] && parseInt(flight.fare.split(" ")[1], 10) <=price_range[1])
-        this.loading = false
-      },500)
-      
+      console.log("hi", price_range);
+      this.loading = true;
+      setTimeout(() => {
+        this.flights = this.flights.filter(
+          flight =>
+            parseInt(flight.fare.split(" ")[1], 10) >= price_range[0] &&
+            parseInt(flight.fare.split(" ")[1], 10) <= price_range[1]
+        );
+        this.loading = false;
+      }, 500);
     },
-    resetFilter(){
-      this.flights = flights
-      this.filters = {}
+    resetFilter() {
+      this.flights = flights;
+      this.filters = {};
     }
   },
   created() {}
@@ -78,7 +81,15 @@ body {
 .container {
   margin: 20px;
 }
-.search-title{
-  margin-bottom: 30px
+.search-title {
+  margin-bottom: 30px;
+}
+.site-title {
+  position: sticky;
+
+  z-index: 5000;
+  background: white;
+  top: 0px;
+  height: 50px;
 }
 </style>
