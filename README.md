@@ -1,7 +1,14 @@
 #Flight Search Engine (VueJs)
 
+<<<<<<< HEAD
 ### Demo
   https://flight-search-engine.surge.sh
+=======
+#### demo
+http://flight-search-engine.surge.sh/
+
+
+>>>>>>> 863a4a533a0161e3858b5a200089e1490542af6d
 ## Project setup
 
 ```
